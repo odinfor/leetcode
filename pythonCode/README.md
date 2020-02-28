@@ -1,2 +1,2 @@
 # leetcode
-Python版本
+Python语言版本
