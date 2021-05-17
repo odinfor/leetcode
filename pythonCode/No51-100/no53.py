@@ -6,31 +6,17 @@
 # @desc    :
 class Solution:
     def maxSubArray(self, nums) -> int:
-        left, right, maxSum = 0, len(nums) - 1, 0
+        # 动态规划
+        if not nums:
+            return 0
+        if len(nums) == 1:
+            return nums[0]
+        curMax, resultMax = -100000, nums[0]
+        for i in range(len(nums)):
+            curMax = max(nums[i] + curMax, nums[i])
+            resultMax = max(curMax, resultMax)
 
-        while left <= right:
-            newSum = self.getSum(nums[left: right])
-            maxSum = newSum if newSum > maxSum else maxSum
-            if left == right:
-                if nums[left] > 0:
-                    maxSum = maxSum + nums[left]
-                    return maxSum
-            if nums[left] < 0 and nums[right] > 0:
-                left += 1
-            elif nums[left] > 0 and nums[right] < 0:
-                right -= 1
-            elif nums[left] > nums[right]:
-                right -= 1
-            else:
-                left += 1
-
-        return maxSum
-
-    def getSum(self, nums):
-        num = 0
-        for i in nums:
-            num += i
-        return num
+        return resultMax
 
 
 if __name__ == "__main__":
