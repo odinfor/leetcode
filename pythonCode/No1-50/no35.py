@@ -16,6 +16,30 @@ class Solution:
         elif len(nums) == 1 and nums[0] >= target:
             return 0
 
-        midone = len(nums)/2 + 1
+        left, right = 0, len(nums) - 1
+        if target > nums[right]:
+            return right + 1
+        if target < nums[left]:
+            return left
 
-        left, right = nums[:midone], nums[midone:]
+        while left < right:
+            mid = left + int((right - left)/2)
+            if nums[mid] == target:
+                return mid
+            elif nums[mid] < target <= nums[mid + 1]:
+                return mid + 1
+            elif target > nums[mid] and target > nums[mid + 1]:
+                left = mid + 1
+            elif nums[mid - 1] < target < nums[mid]:
+                return mid
+            elif target < nums[mid - 1]:
+                right = mid - 1
+
+        return mid
+
+
+if __name__ == "__main__":
+    s = Solution()
+    print(s.searchInsert([1, 4, 6, 8, 12, 14, 15, 25, 33, 65, 74, 75, 76, 77, 80], 4))
+    print(s.searchInsert([1, 3, 5, 6], ))
+
