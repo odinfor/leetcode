@@ -8,34 +8,17 @@ class Solution:
     def merge(self, nums1: list, m: int, nums2: list, n: int) -> None:
         """
         Do not return anything, modify nums1 in-place instead.
+        方法一：合并nums1，nums2，对nums1进行排序
+        方法二：双指针从后向前合并
         """
         if m == 0:
             return nums2
         if n == 0:
             return nums1
 
-        index1, index2, nums3 = 0, 0, []
+        nums1_number_end, nums2_end, nums1_end = m - 1, n - 1, m + n -1
         while True:
-            x = min(nums1[index1], nums2[index2])
-            if nums1[index1] < nums2[index2]:
-                index1 += 1
-                nums3.append(x)
-            elif nums1[index1] > nums2[index2]:
-                index2 += 1
-                nums3.append(x)
-            else:
-                nums3 = nums3 + [x] * 2
-                index1 += 1
-                index2 += 1
 
-            if index1 > len(nums1) - 1 - n:
-                nums3 = nums3 + nums2[index2:]
-                break
-            if index2 > len(nums2) - 1:
-                nums3 = nums3 + nums1[index1:len(nums1) - n]
-                break
-
-        return nums3
 
 
 if __name__ == "__main__":
