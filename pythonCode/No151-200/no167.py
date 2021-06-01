@@ -1,5 +1,7 @@
 class Solution:
     def twoSum(self, numbers: list, target: int) -> list:
+        if len(numbers) < 2:
+            return []
         left, right = 0, len(numbers) - 1
         while left < right:
             if numbers[left] + numbers[right] == target:

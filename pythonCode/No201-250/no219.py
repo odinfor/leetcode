@@ -13,6 +13,7 @@ class Solution:
         return False
 
     def containsNearbyDuplicate2(self, nums: list, k: int) -> bool:
+        # 使用哈希表方式
         nums_map = {}
         for i in range(len(nums)):
             if nums[i] not in nums_map:
