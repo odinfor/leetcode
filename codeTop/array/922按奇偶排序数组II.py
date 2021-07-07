@@ -9,15 +9,14 @@
 class Solution:
     def sortArrayByParityII(self, nums: list) -> list:
         right = 1
-
         for i in range(0, len(nums), 2):
             if nums[i] % 2 != 0:
                 while right <= len(nums) - 1:
                     if nums[right] % 2 == 0:
                         nums[i], nums[right] = nums[right], nums[i]
-                        # right += 1
+                        right += 2
                         break
-                    right += 1
+                    right += 2
 
         return nums
 
@@ -26,3 +25,4 @@ if __name__ == "__main__":
     s = Solution()
     print(s.sortArrayByParityII([4,2,5,7]))
     print(s.sortArrayByParityII([2,0,3,4,1,3]))
+    print(s.sortArrayByParityII([4,1,1,0,1,0]))
