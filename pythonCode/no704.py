@@ -9,14 +9,14 @@ class Solution:
     def search(self, nums: list, target: int) -> int:
         # 二分查找
         left, right = 0, len(nums) - 1
-        while left <= right:
+        while left < right:
             middle = left + (right - left) // 2
-            if nums[middle] == target:
-                return middle
-            elif nums[middle] > target:
+            if target < nums[middle]:
                 right = middle - 1
-            else:
+            elif target > nums[middle]:
                 left = middle + 1
+            else:
+                return middle
 
         return -1
 

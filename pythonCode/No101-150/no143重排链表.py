@@ -38,9 +38,15 @@ class Solution:
         # 修改重构链表最后节点的指针
         nodeList[left].next = None
 
-
-
-
+    def reorderList2(self, head: ListNode) -> None:
+        """
+        优化解法，时间复杂度O(n)空间复杂度O(1)
+        1.使用快慢指针寻找链表中点；2将尾部链表翻转；3将两个链表合并
+        """
+        slow, fast = head, head
+        while fast.next and fast:
+            slow = slow.next
+            fast = fast.next.next
 
 
 
