@@ -14,21 +14,19 @@ class ListNode:
 
 class Solution:
     def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
-        left = right = head
-        for _ in range(n):
+        if not n:
+            return head
+        left, right = head, head
+        while n:
             right = right.next
-
-        # 判断是否是最后一个,right是最后一个意味着需要剔除的是第一个节点
-        if not right.next:
-            return head.next
-
-        # 遍历right剩下的,遍历到最后left的下一个即为需要剔除的节点
+            n -= 1
+        if not right:
+            return ListNode(val=0)
         while right.next:
             left = left.next
             right = right.next
-
-        # 指向下下个节点剔除倒数第n个节点
         left.next = left.next.next
-
         return head
+
+
 
